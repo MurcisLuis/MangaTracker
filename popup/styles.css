@@ -1,0 +1,486 @@
+/* Global Styles */
+body {
+    background-color: #2C2C2C;
+    color: #FFFFFF;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header Styles */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #424242;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    width: 600px;
+    box-sizing: border-box;
+}
+
+.search-bar {
+    flex: 1;
+    margin: 0 15px;
+    display: flex;
+    align-items: center;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 8px;
+    border: none;
+    border-radius: 20px;
+    background-color: #333;
+    color: #FFF;
+    outline: none;
+}
+
+.search-bar input::placeholder {
+    color: #AAA;
+}
+
+.icon-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #FFF;
+}
+
+#header-container {
+    width: 600px;
+}
+
+/* View Options */
+.view-options {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 10px 20px;
+}
+
+.sort-select {
+    background-color: #333;
+    color: #FFF;
+    border: none;
+    padding: 5px;
+    margin-right: 10px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* Manga List Styles */
+#popup #mangaList.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+    padding: 10px;
+}
+
+#popup #mangaList.list {
+    display: block;
+    padding: 10px;
+}
+
+.manga-item {
+    position: relative;
+    background-color: #333;
+    border-radius: 8px;
+    overflow: hidden;
+    padding: 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    margin-bottom: 10px;
+}
+
+/* Contenedor de imagen */
+/* Contenedor de imagen para vista grid */
+.grid .image-container {
+    position: relative;
+    width: 100%;
+    padding-top: 150%; /* Mantiene la relación de aspecto en la vista grid */
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.grid .image-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Asegura que la imagen cubra todo el contenedor en la vista grid */
+    object-position: center; /* Centra la imagen en el contenedor */
+    transition: transform 0.3s ease;
+}
+
+/* Contenedor de imagen para vista list */
+.list .image-container {
+    position: relative;
+    overflow: hidden;
+    width: 100%; /* Ocupar todo el ancho del contenedor */
+    max-height: 300px; /* Establece una altura máxima de 300px para evitar que sea demasiado grande */
+    height: auto; /* Ajusta la altura de manera automática */
+    border-radius: 8px;
+}
+
+/* Imágenes dentro de la vista list */
+.list .image-container img {
+    width: 100%;
+    height: auto;
+    object-fit: cover; /* Mantiene la relación de aspecto y recorta si es necesario */
+    object-position: center;
+}
+
+.overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+h4.manga-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 5px 0 0 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Limita a dos líneas */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal; /* Para permitir saltos de línea */
+}
+
+.manga-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 5px 0 0 0;
+}
+
+.chapter-info {
+    font-size: 14px;
+    color: #DDD;
+}
+
+.grid .chapter-info {
+    text-align: center;
+}
+
+.manga-item.list img:hover {
+    transform: scale(1.1);
+}
+
+.manga-item.grid {
+    text-align: center;
+}
+
+.manga-item.list {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.delete-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: rgba(255, 0, 0, 0.8);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.delete-button .material-icons {
+    font-size: 18px;
+    color: #FFF;
+}
+
+/* Detail Page Styles */
+.details-container {
+    margin: 20px;
+    padding: 20px;
+    background-color: #333;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Manga Banner and Continue Reading Button */
+.manga-banner-container {
+    position: relative;
+    overflow: hidden;
+    height: 200px; /* Control the height of the banner */
+    border-radius: 8px;
+}
+
+.manga-banner {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the container while maintaining aspect ratio */
+    object-position: center;
+}
+
+.continue-reading-btn {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: #FF5722;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.continue-reading-btn .material-icons {
+    margin-left: 5px;
+}
+
+.continue-reading-btn:hover {
+    background-color: #E64A19;
+}
+
+.manga-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.manga-description {
+    font-size: 16px;
+    margin-top: 10px;
+    color: #AAA;
+}
+
+.chapter-list {
+    margin-top: 20px;
+}
+
+.chapter-item {
+    background-color: #444;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.chapter-item:hover {
+    background-color: #555;
+}
+
+.chapter-item h4 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.chapter-item p {
+    margin: 5px 0 0 0;
+    font-size: 14px;
+    color: #BBB;
+}
+
+/* Estilos para el contenedor de ajustes */
+.settings-container {
+    padding: 20px;
+}
+
+/* Elementos de configuración individuales */
+.setting-item {
+    margin-bottom: 20px;
+}
+
+/* Títulos de los ajustes */
+.setting-item h3 {
+    margin-bottom: 10px;
+}
+
+/* Botones de ajuste */
+.mdc-button {
+    margin-right: 10px;
+    margin-bottom: 10px;
+    width: 100%; /* Botones a lo ancho */
+}
+
+/* Estilo del botón primario */
+.mdc-button--primary {
+    background-color: #6200ea; /* Morado */
+    color: white;
+}
+
+/* Estilo del botón de advertencia */
+.mdc-button--danger {
+    background-color: #d32f2f; /* Rojo */
+    color: white;
+}
+
+/* Ícono de advertencia en el botón */
+.mdc-button__icon {
+    margin-right: 8px;
+}
+
+/* Checkbox personalizado para el ajuste de "Pasar automáticamente al siguiente capítulo" */
+.mdc-checkbox .mdc-checkbox__native-control {
+    background-color: #333;
+    border-radius: 4px;
+}
+
+.mdc-checkbox .mdc-checkbox__background {
+    border-color: #00e676; /* Verde brillante */
+}
+
+.mdc-checkbox__checkmark {
+    fill: #00e676; /* Color del checkmark */
+}
+
+.mdc-checkbox__mixedmark {
+    background-color: #00e676; /* Color del mixed mark */
+}
+
+/* Texto junto al checkbox */
+.mdc-form-field label {
+    color: #FFFFFF;
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+/* Ajustes para el fondo y la barra de búsqueda */
+body {
+    background-color: #2C2C2C;
+    color: #FFFFFF;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.search-bar input {
+    background-color: #333;
+    color: #FFF;
+    outline: none;
+    border-radius: 20px;
+}
+
+.search-bar input::placeholder {
+    color: #AAA;
+}
+
+/* Ajustes del ícono de advertencia en el botón rojo */
+.mdc-button--danger .material-icons {
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+/* Espaciado del checkbox */
+.mdc-form-field {
+    margin-bottom: 20px;
+}
+
+/* Hover sobre el botón */
+.mdc-button:hover {
+    opacity: 0.9;
+}
+
+/* Tamaño del contenedor principal */
+#header-container {
+    width: 100%;
+    max-width: 600px;
+}
+
+/* Tamaño del contenedor de ajustes */
+.settings-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Caja de selección y hover */
+.mdc-checkbox:hover .mdc-checkbox__background {
+    border-color: #00e676;
+}
+
+/* Fondo de hover para los botones */
+.mdc-button--primary:hover {
+    background-color: #3700b3;
+}
+
+.mdc-button--danger:hover {
+    background-color: #c62828;
+}
+
+
+.checkbox-wrapper-20 {
+    --slider-height: 8px;
+    --slider-width: calc(var(--slider-height) * 4);
+    --switch-height: calc(var(--slider-height) * 3);
+    --switch-width: var(--switch-height);
+    --switch-shift: var(--slider-height);
+    --transition: all 0.2s ease;
+
+    --switch-on-color: #ef0460;
+    --slider-on-color: #fc5d9b;
+
+    --switch-off-color: #eeeeee;
+    --slider-off-color: #c5c5c5;
+  }
+
+  .checkbox-wrapper-20 .switch {
+    display: block;
+  }
+    
+  .checkbox-wrapper-20 .switch .slider {
+    position: relative;
+    display: inline-block;
+    height: var(--slider-height);
+    width: var(--slider-width);
+    border-radius: var(--slider-height);
+    cursor: pointer;
+    background: var(--slider-off-color);
+    transition: var(--transition);
+  }
+      
+  .checkbox-wrapper-20 .switch .slider:after {
+    background: var(--switch-off-color);
+    position: absolute;
+    left: calc(-1 * var(--switch-shift));
+    top: calc((var(--slider-height) - var(--switch-height)) / 2);
+    display: block;
+    width: var(--switch-height);
+    height: var(--switch-width);
+    border-radius: 50%;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, .2);
+    content: '';
+    transition: var(--transition);
+  }
+    
+  .checkbox-wrapper-20 .switch label {
+    margin-right: 7px;
+  }
+    
+  .checkbox-wrapper-20 .switch .input {
+    display: none;
+  }
+      
+  .checkbox-wrapper-20 .switch .input ~ .label {
+    margin-left: var(--slider-height);
+  }
+         
+  .checkbox-wrapper-20 .switch .input:checked ~ .slider:after {
+    left: calc(var(--slider-width) - var(--switch-width) + var(--switch-shift));
+  }
+    
+  .checkbox-wrapper-20 .switch .input:checked ~ .slider {
+    background: var(--slider-on-color);
+  }
+
+  .checkbox-wrapper-20 .switch .input:checked ~ .slider:after {
+    background: var(--switch-on-color);
+  }

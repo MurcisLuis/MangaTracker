@@ -1,0 +1,40 @@
+{
+  "manifest_version": 3,
+  "name": "Manga Tracker",
+  "version": "1.1",
+  "author": "Murcis_Luis",
+  "description": "Guarda automáticamente la información del manga y la posición de scroll",
+  "permissions": [
+    "storage",
+    "tabs"
+  ],
+  "icons": {
+    "16": "images/ico-16.png",
+    "32": "images/ico-32.png",
+    "64": "images/ico-64.png",
+    "128": "images/ico-128.png"
+  },
+  "action": {
+    "default_popup": "/popup/popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://leerolymp.com/*",
+        "https://visorikigai.ketonos.com/*",
+        "https://visorikigai.nipase.com/*",
+        "https://manhwaweb.com/*",
+        "https://www.leercapitulo.co/*",
+        "https://taurusmanga.com/*"
+      ],
+      "js": ["content.js"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["header.html", "headerLoader.js", "styles.css"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "default_locale": "en" 
+}

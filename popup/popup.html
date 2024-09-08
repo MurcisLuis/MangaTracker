@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="appTitle"></title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/material-components-web@latest/dist/material-components-web.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="popup.js"></script>
+  <script src="headerLoader.js"></script>
+</head>
+<body id="popup">
+  <div id="header-container"></div>
+  
+  <div class="view-options">
+    <select id="sortSelect" class="sort-select">
+      <option value="date_desc" id="sortDateDesc"></option>
+      <option value="date_asc" id="sortDateAsc"></option>
+      <option value="title_asc" id="sortTitleAsc"></option>
+      <option value="title_desc" id="sortTitleDesc"></option>
+    </select>
+    <button id="toggleView" class="icon-button">
+      <span class="material-icons" id="toggleIcon">view_module</span>
+    </button>
+  </div>
+  
+  <ul id="mangaList" class="grid"></ul>
+</body>
+</html>

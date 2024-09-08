@@ -1,0 +1,68 @@
+{
+  "appTitle": {
+    "message": "Manga Tracker"
+  },
+  "continueReading": {
+    "message": "Seguir leyendo"
+  },
+  "searchPlaceholder": {
+    "message": "Buscar..."
+  },
+  "settings": {
+    "message": "Ajustes"
+  },
+  "sortDateDesc": {
+    "message": "Fecha Descendente"
+  },
+  "sortDateAsc": {
+    "message": "Fecha Ascendente"
+  },
+  "sortTitleAsc": {
+    "message": "Título A-Z"
+  },
+  "sortTitleDesc": {
+    "message": "Título Z-A"
+  },
+  "settingsTitle": {
+    "message": "Ajustes"
+  },
+  "settingsSavedMessage": {
+    "message": "Ajustes guardados"
+  },
+  "chapterLabel": {
+    "message": "Capítulo"
+  },
+  "readAtLabel": {
+    "message": "Leído en"
+  },
+  "mangaDescriptionPlaceholder": {
+    "message": "Descripción:"
+  },
+  "cleanPreviousChapters": {
+    "message": "Limpiar capítulos anteriores al último"
+  },
+  "cleanAllData": {
+    "message": "Limpiar todos los datos"
+  },
+  "confirmCleanPrevious": {
+    "message": "¿Estás seguro de que deseas limpiar todos los capítulos anteriores al último para cada manga?"
+  },
+  "confirmCleanAll": {
+    "message": "¡Advertencia! Esto eliminará **todos** los datos de los mangas que has leído. Esta acción no se puede deshacer. ¿Estás seguro?"
+  },
+  "successCleaningPrevious": {
+    "message": "Capítulos anteriores limpiados exitosamente."
+  },
+  "errorCleaningPrevious": {
+    "message": "Hubo un error al limpiar los capítulos anteriores."
+  },
+  "successCleaningAll": {
+    "message": "Todos los datos han sido limpiados exitosamente."
+  },
+  "errorCleaningAll": {
+    "message": "Hubo un error al limpiar todos los datos."
+  },"autoNextChapter": {
+    "message": "Pasar automáticamente al siguiente capítulo"
+  }
+ 
+}

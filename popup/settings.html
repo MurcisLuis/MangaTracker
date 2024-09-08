@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ajustes de la Extensión</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/material-components-web@latest/dist/material-components-web.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="header-container"></div>
+
+  
+ 
+  
+  <div class="settings-container">
+
+    <div class="setting-item">
+      <div class="mdc-form-field">
+        <div class="checkbox-wrapper-20">
+          <div class="switch">
+            <input id="one-20" class="input" name="autoNextChapter" type="checkbox" />
+            <label for="one-20" class="slider"></label>
+          </div>
+        </div>
+        <label for="autoNextChapter" id="autoNextChapterLabel">Pasar automáticamente al siguiente capítulo</label>
+      </div>
+    </div>
+
+    <div class="setting-item">
+      <button id="cleanPreviousChapters" class="mdc-button mdc-button--raised mdc-button--primary">
+        <span class="mdc-button__label">Limpiar capítulos anteriores al último</span>
+      </button>
+      
+      <button id="cleanAllData" class="mdc-button mdc-button--raised mdc-button--danger">
+        <span class="material-icons mdc-button__icon">warning</span>
+        <span class="mdc-button__label">Limpiar todos los datos</span>
+      </button>
+    </div>
+  </div>
+  <script src="headerLoader.js"></script>
+  <script src="settings.js"></script>
+</body>
+</html>

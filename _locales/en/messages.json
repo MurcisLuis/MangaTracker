@@ -1,0 +1,65 @@
+{
+  "appTitle": {
+    "message": "Manga Tracker"
+  },
+  "continueReading": {
+    "message": "Continue Reading"
+  },
+  "searchPlaceholder": {
+    "message": "Search..."
+  },
+  "settings": {
+    "message": "Settings"
+  },
+  "sortDateDesc": {
+    "message": "Date Descending"
+  },
+  "sortDateAsc": {
+    "message": "Date Ascending"
+  },
+  "sortTitleAsc": {
+    "message": "Title A-Z"
+  },
+  "sortTitleDesc": {
+    "message": "Title Z-A"
+  },
+  "settingsTitle": {
+    "message": "Settings"
+  },
+  "chapterLabel": {
+    "message": "Chapter"
+  },
+  "readAtLabel": {
+    "message": "Read in"
+  },
+  "mangaDescriptionPlaceholder": {
+    "message": "Description: "
+  },
+  "cleanPreviousChapters": {
+    "message": "Clean chapters prior to the last one"
+  },
+  "cleanAllData": {
+    "message": "Clear all data"
+  },
+  "confirmCleanPrevious": {
+    "message": "Are you sure you want to clean all chapters prior to the last one for each manga?"
+  },
+  "confirmCleanAll": {
+    "message": "Warning! This will delete **all** data of the mangas you have read. This action cannot be undone. Are you sure?"
+  },
+  "successCleaningPrevious": {
+    "message": "Previous chapters cleaned successfully."
+  },
+  "errorCleaningPrevious": {
+    "message": "There was an error cleaning the previous chapters."
+  },
+  "successCleaningAll": {
+    "message": "All data has been successfully cleaned."
+  },
+  "errorCleaningAll": {
+    "message": "There was an error cleaning all the data."
+  },
+  "autoNextChapter": {
+    "message": "Automatically go to the next chapter"
+  }
+}
