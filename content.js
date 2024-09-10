@@ -203,66 +203,6 @@ function extractNextButtonFromLeerCapitulo() {
     );
   return undefined;
 }
-/**
- * Extrae la informacion de Manhwa
- *
- * @returns data{title,<bannerUrl|chapter>}
- */
-function extractDataFromManhwa() {
-  const titleElement = document.querySelector(
-    "#root > div > div:nth-child(1) > div > div:nth-child(4) > div.text-center.xs\\:text-lg.md\\:text-3xl.pt-4.px-3"
-  );
-  const chapterElement = document.querySelector(
-    "#root > div > div:nth-child(1) > div > div:nth-child(4) > div.text-center.text-sm.xs\\:text-base.md\\:text-2xl.pt-4.pb-6.px-3 > span"
-  );
-  const titleBElement = document.querySelector(
-    "#root > div > div:nth-child(1) > div > div.container.mx-auto.max-w-6xl.sm\\:mt-5.mt-2 > div > div > div.sm\\:w-3\\/4.max-w-md.sm\\:max-w-none > div > h2"
-  );
-  const bannerElement = document.querySelector(
-    "#root > div > div:nth-child(1) > div > div.container.mx-auto.max-w-6xl.sm\\:mt-5.mt-2 > div > div > div.sm\\:w-1\\/4.w-2\\/3 > div.relative.w-full > img"
-  );
-
-  const data = {};
-
-  if (titleElement) {
-    data.title = titleElement.textContent.trim();
-  } else {
-    console.debug(
-      "No se pudo encontrar el título en la página de leercapitulo.co"
-    );
-  }
-
-  if (chapterElement) {
-    data.chapter = chapterElement.textContent.trim().replace("Capitulo ", "");
-  } else {
-    console.debug(
-      "No se pudo encontrar el capítulo en la página de leercapitulo.co"
-    );
-  }
-
-  if (titleBElement && bannerElement) {
-    data.title = titleBElement.textContent.trim();
-    data.bannerUrl = bannerElement.src;
-  } else {
-    console.debug(
-      "No se encontró un banner o título secundario para actualizar."
-    );
-  }
-
-  return data;
-}
-
-function extractNextButtonFromManhwa() {
-  if (
-    document.querySelector(
-      "#__nuxt > div > div > div.mx-auto.relative.z-10 > div > main > div.flex.flex-col.items-center.gap-8.py-8 > div.flex-center.bg-gray-800.p-4.rounded-xl.gap-4 > a.h-12.px-4.bg-gray-900\\/50.flex-center.gap-2.rounded-xl.hover\\:text-amber-500.transition-color.sf-ripple-container > div > div:nth-child(2)"
-    ).textContent == "Capítulo siguiente"
-  )
-    return document.querySelector(
-      "#__nuxt > div > div > div.mx-auto.relative.z-10 > div > main > div.flex.flex-col.items-center.gap-8.py-8 > div.flex-center.bg-gray-800.p-4.rounded-xl.gap-4 > a.h-12.px-4.bg-gray-900\\/50.flex-center.gap-2.rounded-xl.hover\\:text-amber-500.transition-color.sf-ripple-container"
-    );
-  return undefined;
-}
 
 /**
  * Extrae la informacion de Taurusmanga
@@ -322,8 +262,6 @@ function getExtractorFunction() {
     return extractDataFromIkigai;
   } else if (url.includes("leercapitulo.co")) {
     return extractDataFromLeerCapitulo;
-  } else if (url.includes("manhwaweb.com")) {
-    return extractDataFromManhwa;
   } else if (url.includes("taurusmanga.com")) {
     return extractDataFromTaurusmanga;
   }
@@ -341,8 +279,6 @@ function getExtractorButton() {
     return extractNextButtonFromIkigai;
   } else if (url.includes("leercapitulo.co")) {
     return extractNextButtonFromLeerCapitulo;
-  } else if (url.includes("manhwaweb.com")) {
-    return extractNextButtonFromManhwa;
   } else if (url.includes("taurusmanga.com")) {
     return extractNextButtonFromTaurusmanga;
   }
