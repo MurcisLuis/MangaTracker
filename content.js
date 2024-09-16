@@ -86,65 +86,6 @@ function extractNextButtonFromLeerOlymp() {
 }
 
 /**
- * Extrae la informacion de Ikigai
- *
- * @returns data{title,<bannerUrl|chapter>}
- */
-function extractDataFromIkigai() {
-  const titleElement = document.querySelector(
-    "body > main > section.max-w-\\[800px\\].container.mx-auto.flex-center.flex-col.my-16 > ul:nth-child(2) > li:nth-child(1) > a"
-  );
-  const chapterElement = document.querySelector(
-    "body > main > section.max-w-\\[800px\\].container.mx-auto.flex-center.flex-col.my-16 > ul:nth-child(2) > li:nth-child(2)"
-  );
-  const titleBElement = document.querySelector(
-    "body > main > div.container.mx-auto.my-16.lt-md\\:px-2.space-y-8 > div > div.w-full.max-w-\\[310px\\].mx-auto.space-y-8 > article > div > h1"
-  );
-  const bannerElement = document.querySelector(
-    "body > main > div.container.mx-auto.my-16.lt-md\\:px-2.space-y-8 > div > div.w-full.max-w-\\[310px\\].mx-auto.space-y-8 > article > img"
-  );
-
-  const data = {};
-
-  if (titleElement) {
-    data.title = titleElement.textContent.trim();
-  } else {
-    console.debug(
-      "No se pudo encontrar el título en la página de visorikigai.ketonos.com"
-    );
-  }
-
-  if (chapterElement) {
-    data.chapter = chapterElement.textContent.trim().replace("Capítulo ", "");
-  } else {
-    console.debug(
-      "No se pudo encontrar el capítulo en la página de visorikigai.ketonos.com"
-    );
-  }
-
-  if (titleBElement && bannerElement) {
-    data.title = titleBElement.textContent.trim();
-    data.bannerUrl = bannerElement.src;
-  } else {
-    console.debug(
-      "No se encontró un banner o título secundario para actualizar."
-    );
-  }
-
-  return data;
-}
-
-function extractNextButtonFromIkigai() {
-  let btn = document.querySelector(
-    "body > main > section.max-w-\\[800px\\].container.mx-auto.flex-center.flex-col.my-16 > ul:nth-child(39) > li:nth-child(2) > a > span:nth-child(1)"
-  );
-  if (btn && btn.textContent == "Capítulo siguiente")
-    return document.querySelector(
-      "body > main > section.max-w-\\[800px\\].container.mx-auto.flex-center.flex-col.my-16 > ul:nth-child(39) > li:nth-child(2) > a"
-    );
-  return undefined;
-}
-/**
  * Extrae la informacion de LeerCapitulo
  *
  * @returns data{title,<bannerUrl|chapter>}
@@ -221,6 +162,7 @@ function extractDataFromManhwa() {
   const bannerElement = document.querySelector(
     "#root > div > div:nth-child(1) > div > div.container.mx-auto.max-w-6xl.sm\\:mt-5.mt-2 > div > div > div.sm\\:w-1\\/4.w-2\\/3 > div.relative.w-full > img"
   );
+  const isMature = document.querySelector("#root > div > div:nth-child(1) > div > div.container.mx-auto.max-w-6xl.sm\\:mt-5.mt-2 > div > div > div.sm\\:w-1\\/4.w-2\\/3 > div.relative.w-full > div > span");
 
   const data = {};
 
@@ -240,7 +182,7 @@ function extractDataFromManhwa() {
     );
   }
 
-  if (titleBElement && bannerElement) {
+  if (titleBElement && bannerElement && !isMature) {
     data.title = titleBElement.textContent.trim();
     data.bannerUrl = bannerElement.src;
   } else {
@@ -318,8 +260,6 @@ function getExtractorFunction() {
 
   if (url.includes("leerolymp.com")) {
     return extractDataFromLeerOlymp;
-  } else if (url.includes("visorikigai")) {
-    return extractDataFromIkigai;
   } else if (url.includes("leercapitulo.co")) {
     return extractDataFromLeerCapitulo;
   } else if (url.includes("manhwaweb.com")) {
@@ -337,8 +277,6 @@ function getExtractorButton() {
 
   if (url.includes("leerolymp.com")) {
     return extractNextButtonFromLeerOlymp;
-  } else if (url.includes("visorikigai")) {
-    return extractNextButtonFromIkigai;
   } else if (url.includes("leercapitulo.co")) {
     return extractNextButtonFromLeerCapitulo;
   } else if (url.includes("manhwaweb.com")) {
@@ -392,7 +330,9 @@ function checkAutoNextChapter() {
       if (!funcExtractorButton) return;
 
       const nextButton = funcExtractorButton();
-      nextButton.click();
+      if (nextButton) {
+        nextButton.click();
+      }
 
       // Activar el cooldown después de hacer clic en el botón de siguiente episodio
       isInCooldown = true;
@@ -513,7 +453,7 @@ function saveMangaProgress() {
       }
 
       // Mantener los datos generales
-      if (extractedData.bannerUrl) {
+      if (extractedData.bannerUrl && extractedData.bannerUrl != mangaData.bannerUrl) {
         mangaData.bannerUrl = extractedData.bannerUrl;
         mangaData.mainpage = document.location.href;
       }
@@ -655,9 +595,7 @@ window.addEventListener("load", () => {
   initializeCurrentData();
   observeDOMChanges();
   waitForImagesAndRestoreScroll(); // Llamada inicial por si ya están cargadas
-  if (!isAutoScrolling) {
-    saveMangaProgress();
-  }
+  saveMangaProgress();
 });
 
 window.addEventListener("scroll", () => {
