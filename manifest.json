@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Manga Tracker",
-  "version": "1.1",
+  "version": "1.2",
   "author": "Murcis_Luis",
   "description": "Guarda automáticamente la información del manga y la posición de scroll",
   "permissions": [
@@ -20,12 +20,15 @@
   "content_scripts": [
     {
       "matches": [
-        "https://leerolymp.com/*",
-        "https://manhwaweb.com/*",
+        "https://zonaolympus.com/*",
         "https://www.leercapitulo.co/*",
         "https://taurusmanga.com/*"
       ],
-      "js": ["content.js"]
+      "js": [
+        "browser-polyfill.min.js",
+        "content.js"
+      ],
+      "run_at": "document_idle"
     }
   ],
   "web_accessible_resources": [
@@ -34,5 +37,8 @@
       "matches": ["<all_urls>"]
     }
   ],
+  "background": {
+    "service_worker": "background.js"
+  },
   "default_locale": "en" 
 }
