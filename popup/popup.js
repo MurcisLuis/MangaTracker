@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 function translate(key) {
-  return chrome.i18n.getMessage(key);
+  return browser.i18n.getMessage(key);
 }
 
 function loadLocalizedStrings() {
@@ -24,7 +24,7 @@ function loadLocalizedStrings() {
 }
 
 function loadPreferences() {
-  chrome.storage.local.get(['sortBy', 'sortOrder', 'viewMode'], (result) => {
+  browser.storage.local.get(['sortBy', 'sortOrder', 'viewMode'], (result) => {
     sortBy = result.sortBy || 'date';
     sortOrder = result.sortOrder || 'desc';
 
@@ -66,13 +66,13 @@ function handleSortChange() {
   }
 
   // Guardar las preferencias de ordenación
-  chrome.storage.local.set({ sortBy, sortOrder }, () => {
+  browser.storage.local.set({ sortBy, sortOrder }, () => {
     loadMangaList(); // Recargar la lista con el nuevo criterio de ordenación
   });
 }
 
 function loadMangaList() {
-  chrome.storage.local.get(['mangaProgress'], (result) => {
+  browser.storage.local.get(['mangaProgress'], (result) => {
     const mangaListElement = document.getElementById('mangaList');
     mangaListElement.innerHTML = '';
 
@@ -167,33 +167,33 @@ function toggleView() {
     toggleIcon.textContent = 'view_list';
 
     // Guardar la preferencia de vista
-    chrome.storage.local.set({ viewMode: 'grid' });
+    browser.storage.local.set({ viewMode: 'grid' });
   } else {
     mangaListElement.classList.remove('grid');
     mangaListElement.classList.add('list');
     toggleIcon.textContent = 'view_module';
 
     // Guardar la preferencia de vista
-    chrome.storage.local.set({ viewMode: 'list' });
+    browser.storage.local.set({ viewMode: 'list' });
   }
 }
 
 
 
 function deleteManga(title) {
-  chrome.storage.local.get(['mangaProgress'], (result) => {
+  browser.storage.local.get(['mangaProgress'], (result) => {
     let progressData = result.mangaProgress || {};
     delete progressData[title];
-    chrome.storage.local.set({ mangaProgress: progressData }, () => {
+    browser.storage.local.set({ mangaProgress: progressData }, () => {
       loadMangaList(); // Recargar la lista después de eliminar
     });
   });
 }
 
 function restoreScrollPosition() {
-  chrome.storage.local.get(['mangaProgress'], (result) => {
-      if (chrome.runtime.lastError) {
-          console.error('Error al acceder al almacenamiento local:', chrome.runtime.lastError);
+  browser.storage.local.get(['mangaProgress'], (result) => {
+      if (browser.runtime.lastError) {
+          console.error('Error al acceder al almacenamiento local:', browser.runtime.lastError);
           return;
       }
 

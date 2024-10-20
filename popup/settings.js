@@ -7,13 +7,13 @@ document.addEventListener('DOMContentLoaded', () => {
   
     // Añadir event listeners a los botones
     document.getElementById('cleanPreviousChapters').addEventListener('click', () => {
-      if (confirm(chrome.i18n.getMessage('confirmCleanPrevious'))) {
+      if (confirm(browser.i18n.getMessage('confirmCleanPrevious'))) {
         cleanPreviousChapters();
       }
     });
   
     document.getElementById('cleanAllData').addEventListener('click', () => {
-      if (confirm(chrome.i18n.getMessage('confirmCleanAll'))) {
+      if (confirm(browser.i18n.getMessage('confirmCleanAll'))) {
         cleanAllData();
       }
     });
@@ -29,19 +29,19 @@ document.addEventListener('DOMContentLoaded', () => {
   // Función para cargar las cadenas localizadas
   function loadLocalizedStrings() {
     // Título de la página
-    document.title = chrome.i18n.getMessage('appTitle');
+    document.title = browser.i18n.getMessage('appTitle');
   
     // Botones de acción
-    document.getElementById('cleanPreviousChapters').textContent = chrome.i18n.getMessage('cleanPreviousChapters');
-    document.getElementById('cleanAllData').innerHTML = '<span class="material-icons mdc-button__icon">warning</span>' + chrome.i18n.getMessage('cleanAllData');
+    document.getElementById('cleanPreviousChapters').textContent = browser.i18n.getMessage('cleanPreviousChapters');
+    document.getElementById('cleanAllData').innerHTML = '<span class="material-icons mdc-button__icon">warning</span>' + browser.i18n.getMessage('cleanAllData');
   
     // Texto del ajuste "Auto Next Chapter"
-    document.getElementById('autoNextChapterLabel').textContent = chrome.i18n.getMessage('autoNextChapter');
+    document.getElementById('autoNextChapterLabel').textContent = browser.i18n.getMessage('autoNextChapter');
   }
   
   // Función para cargar el estado de los ajustes
   function loadSettings() {
-    chrome.storage.local.get(['autoNextChapter'], (result) => {
+    browser.storage.local.get(['autoNextChapter'], (result) => {
       const isAutoNextChapterEnabled = result.autoNextChapter || false;
       document.getElementsByName('autoNextChapter')[0].checked = isAutoNextChapterEnabled;
     });
@@ -52,9 +52,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const settings = {};
     settings[settingKey] = settingValue;
   
-    chrome.storage.local.set(settings, () => {
-      if (chrome.runtime.lastError) {
-        console.error('Error al guardar el ajuste:', chrome.runtime.lastError);
+    browser.storage.local.set(settings, () => {
+      if (browser.runtime.lastError) {
+        console.error('Error al guardar el ajuste:', browser.runtime.lastError);
       } else {
         console.log('Ajuste guardado:', settingKey, settingValue);
       }

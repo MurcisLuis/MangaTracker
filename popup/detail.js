@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Cargar el idioma seleccionado antes de continuar
     
-        const userLang =  chrome.i18n.getUILanguage();
+        const userLang =  browser.i18n.getUILanguage();
         moment.locale(userLang);  // Establecer el idioma de moment.js
         
         // Cargar las cadenas localizadas
@@ -15,9 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        chrome.storage.local.get(['mangaProgress'], (result) => {
-            if (chrome.runtime.lastError) {
-                console.error('Error al acceder al almacenamiento local:', chrome.runtime.lastError);
+        browser.storage.local.get(['mangaProgress'], (result) => {
+            if (browser.runtime.lastError) {
+                console.error('Error al acceder al almacenamiento local:', browser.runtime.lastError);
                 return;
             }
 
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('mangaTitle').textContent = mangaInfo.title;
             document.getElementById('mangaBanner').src = mangaInfo.bannerUrl || '/images/image-not-found.webp';
             console.debug(mangaInfo);
-            document.getElementById('mangaDescription').textContent = chrome.i18n.getMessage('mangaDescriptionPlaceholder'); // Cadena traducida
+            document.getElementById('mangaDescription').textContent = browser.i18n.getMessage('mangaDescriptionPlaceholder'); // Cadena traducida
 
             const chapterList = document.getElementById('chapterList');
             Object.entries(mangaInfo.chapters).forEach(([chapter, chapterInfo]) => {
@@ -39,10 +39,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 chapterItem.className = 'chapter-item';
 
                 const chapterTitle = document.createElement('h4');
-                chapterTitle.textContent = `${chrome.i18n.getMessage('chapterLabel')} ${chapter}`;  // Localizar el texto "Capítulo"
+                chapterTitle.textContent = `${browser.i18n.getMessage('chapterLabel')} ${chapter}`;  // Localizar el texto "Capítulo"
 
                 const chapterDate = document.createElement('p');
-                chapterDate.textContent = `${chrome.i18n.getMessage('readAtLabel')} ${moment(chapterInfo.timestamp).fromNow()}`;
+                chapterDate.textContent = `${browser.i18n.getMessage('readAtLabel')} ${moment(chapterInfo.timestamp).fromNow()}`;
 
                 chapterItem.appendChild(chapterTitle);
                 chapterItem.appendChild(chapterDate);
@@ -70,17 +70,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Función para cargar cadenas localizadas
 function loadLocalizedStrings() {
-    document.getElementById('continueReading').textContent = chrome.i18n.getMessage('continueReading');
+    document.getElementById('continueReading').textContent = browser.i18n.getMessage('continueReading');
 }
 
 function focusOrOpenTab(url) {
-    chrome.tabs.query({ url: url }, function(tabs) {
+    browser.tabs.query({ url: url }, function(tabs) {
       if (tabs.length > 0) {
         // Si la pestaña ya está abierta, la enfocamos
-        chrome.tabs.update(tabs[0].id, { active: true });
+        browser.tabs.update(tabs[0].id, { active: true });
       } else {
         // Si no está abierta, abrimos una nueva pestaña
-        chrome.tabs.create({ url: url });
+        browser.tabs.create({ url: url });
       }
     });
 }

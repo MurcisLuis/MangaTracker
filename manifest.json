@@ -37,8 +37,10 @@
       "matches": ["<all_urls>"]
     }
   ],
-  "background": {
-    "service_worker": "background.js"
-  },
-  "default_locale": "en" 
+  "default_locale": "en",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "murcisluis@mangatracker.com"
+    }
+  }
 }
